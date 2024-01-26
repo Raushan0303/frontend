@@ -285,7 +285,7 @@ footer */
 .search-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-} 
+}
 
 .button {
   width: 110px;
@@ -302,10 +302,10 @@ footer */
   border: none;
   position: relative;
   cursor: pointer;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
   padding-left: 8px;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 .svgIcon {
@@ -319,12 +319,12 @@ footer */
 
 .button:hover {
   background-color: rgb(54, 235, 255);
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 .button:active {
   transform: scale(0.97);
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 
 .button:hover .svgIcon {
@@ -333,7 +333,6 @@ footer */
 }
 
 /*login*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -341,7 +340,7 @@ footer */
   font-family: 'Poppins', sans-serif;
 }
 
-.myform{
+.myform {
   padding-top: 5px;
   display: flex;
   align-items: center;
@@ -476,7 +475,7 @@ form input[type='submit']:hover {
   background: #2c52ed;
 }
 
-.login{
+.login {
   height: 60px;
   width: 300px;
   background-color: #2c52ed;
@@ -487,7 +486,7 @@ form input[type='submit']:hover {
   margin-top: 10px;
 }
 
-.login > a{
+.login > a {
   text-decoration: none;
   color: #fff;
 }
