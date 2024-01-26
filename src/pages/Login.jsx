@@ -23,8 +23,8 @@ const Login = () => {
 
   return (
     <div className="myform">
-        <div className="wrapper">
-      <header>Login Form</header>
+      <div className="wrapper">
+      <header className="login_head">Login Form</header>
       <form action="#">
         <div className="field email">
           <div className="input-area">
