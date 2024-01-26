@@ -32,7 +32,7 @@ const Scheduel = () => {
   };
     
   return (
-    <div style={{height: "100vh",width: "100%"}} className="course">
+    <div style={{width: "100%"}} className="course">
       {/* Year (Semester) Dropdown */}
       <div className="dropdown">
         <label htmlFor="year-select">Select Year (Semester)</label>

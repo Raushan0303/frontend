@@ -3,6 +3,9 @@ import { Navbar } from "./components/Navbar"
 import "./style/input.css"
 import Home from "./pages/Home"
 import Scheduel from "./pages/Scheduel"
+import Footer from "./components/Footer"
+import Login from "./pages/Login"
+import Dashboard from "./pages/Dashboard"
 
 
 const App = () => {
@@ -13,8 +16,10 @@ const App = () => {
       <Routes>
         <Route exact path='/' element={<Home/>} />
         <Route exact path="/scheduel" element={<Scheduel/>}/>
-
+        <Route exact path="/adminlogin" element={<Login/>}/>
+        <Route exact path="/dashboard" element={<Dashboard/>}/>
       </Routes>
+      <Footer/>
       </BrowserRouter>
     </div>
   )
