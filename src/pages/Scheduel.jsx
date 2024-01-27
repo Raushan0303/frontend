@@ -27,6 +27,7 @@ const Scheduel = () => {
   // Function to handle button click
   const handleSearch = () => {
     // Do something with selectedYear and selectedBranch
+    // window.open('/routines')
     console.log("Selected Year:", selectedYear);
     console.log("Selected Branch:", selectedBranch);
   };
@@ -73,6 +74,39 @@ const Scheduel = () => {
         Search
       </button>
       <br />
+      
+      {/* Add four cards below the button */}
+      <div className="card-container">
+  {/* Card 1 */}
+  <div className="card">
+    <p className="details teacher">Teacher: John Doe</p>
+    <p className="details">Subject: Mathematics</p>
+    <p className="details">Time: 10:00 AM - 12:00 PM</p>
+  </div>
+
+  {/* Card 2 */}
+  <div className="card">
+    <p className="details teacher">Teacher: Jane Smith</p>
+    <p className="details">Subject: Physics</p>
+    <p className="details">Time: 2:00 PM - 4:00 PM</p>
+  </div>
+
+  {/* Card 3 */}
+  <div className="card">
+    <p className="details teacher">Teacher: Bob Johnson</p>
+    <p className="details">Subject: Chemistry</p>
+    <p className="details">Time: 1:00 PM - 3:00 PM</p>
+  </div>
+
+  {/* Card 4 */}
+  <div className="card">
+    <p className="details teacher">Teacher: Alice Williams</p>
+    <p className="details">Subject: Computer Science</p>
+    <p className="details">Time: 3:30 PM - 5:30 PM</p>
+  </div>
+</div>
+
+
     </div>
   );
 };

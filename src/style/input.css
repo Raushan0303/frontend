@@ -981,3 +981,42 @@ header {
     width: 180px;
   }
 }
+
+/* css of routines */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  padding: 15px;
+  margin: 10px;
+  width: 200px;
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  color: #fff; /* Text color set to white */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.details {
+  color: white;
+  margin-bottom: 10px; /* Add margin-bottom for spacing */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border: 1px solid #fff;
+}
+
+.info {
+  margin: 5px 0;
+  color: #fff; /* Text color set to white */
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+}
