@@ -6,6 +6,10 @@ import Scheduel from "./pages/Scheduel"
 import Footer from "./components/Footer"
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
+import Teacher from "./components/Teacher"
+import Class from "./components/Class"
+import Subject from "./components/Subject"
+
 
 
 const App = () => {
@@ -18,6 +22,9 @@ const App = () => {
         <Route exact path="/scheduel" element={<Scheduel/>}/>
         <Route exact path="/adminlogin" element={<Login/>}/>
         <Route exact path="/dashboard" element={<Dashboard/>}/>
+        <Route exact path="/teacher" element={<Teacher/>}/>
+        <Route exact path="/class" element={<Class/>}/>
+        <Route exact path="/subjects" element={<Subject/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>
