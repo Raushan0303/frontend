@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const Dashboard = () => {
+const Teacher = () => {
   const [teachers, setTeachers] = useState([]);
   const [newTeacherName, setNewTeacherName] = useState("");
   const [newTeacherDep, setNewTeacherDep] = useState("");
@@ -126,7 +126,7 @@ const Dashboard = () => {
             ))}
           </div>
         </div>
-        <div>
+        <div className="adding">
           <h3>Add New Teacher:</h3>
           <input
             type="text"
@@ -149,4 +149,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Teacher;
