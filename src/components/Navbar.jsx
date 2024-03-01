@@ -11,7 +11,7 @@ export const Navbar = () => {
   return (
     <section className="header">
     <nav>
-      <a href="index.html"><img src={logo} alt="" /></a>
+      <a href="/"><img src={logo} alt="" /></a>
       <div className="nav-links" id="navLinks">
         <i className="fa-solid fa fa-xmark" onClick={hideMenu}></i>
         <ul>

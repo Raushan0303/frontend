@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard"
 import Teacher from "./components/Teacher"
 import Class from "./components/Class"
 import Subject from "./components/Subject"
+import Routine from "./components/Routine"
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route exact path="/teacher" element={<Teacher/>}/>
         <Route exact path="/class" element={<Class/>}/>
         <Route exact path="/subjects" element={<Subject/>}/>
+        <Route exact path="/routines" element={<Routine/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>

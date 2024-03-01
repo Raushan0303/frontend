@@ -1020,3 +1020,10 @@ header {
     width: 100%;
   }
 }
+
+.input_data_teacher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}

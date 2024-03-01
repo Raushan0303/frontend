@@ -1,7 +1,50 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
+  
 
 const Home = () => {
+
+  const [teacherCount, setTeacherCount] = useState(0);
+  const [classCount, setClassCount] = useState(0);
+
+  useEffect(() => {
+    fetchTeachers();
+    fetchClasses();
+  }, []);
+
+  const fetchTeachers = async () => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_APP_API}/teacher/get-teacher`);
+    const teachers = response.data.teacher;
+    if (teachers && Array.isArray(teachers)) {
+      setTeacherCount(teachers.length);
+    } else {
+      setTeacherCount(0);
+    }
+  } catch (error) {
+    console.error('Error fetching teachers:', error);
+  }
+};
+
+ const fetchClasses = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API}/class/get-class`);
+      const classes = response.data.Class;
+      if (classes && Array.isArray(classes)) {
+        setClassCount(classes.length);
+      } else {
+        setClassCount(0);
+      }
+    } catch (error) {
+      console.error('Error fetching classes:', error);
+    }
+  };
+
+  
   return (
+    
+    
     <>
       {/* Class Routine / Schedule System */}
       <section className="course">
@@ -10,53 +53,15 @@ const Home = () => {
         <div className="row">
           <div className="course-col">
             <h3>No of professors created so far.</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-               Itaque voluptatibus sit quia hic aliquam nam! Doloremque cumque placeat, 
-               repudiandae soluta exercitationem minus libero magnam, aspernatur, 
-               quidem dolor ex aut quibusdam!
-            </p>
+            <h1>{teacherCount}</h1>
           </div>
           <div className="course-col">
-            <h3>No of users created so far.</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-               Itaque voluptatibus sit quia hic aliquam nam! Doloremque cumque placeat, 
-               repudiandae soluta exercitationem minus libero magnam, aspernatur, 
-               quidem dolor ex aut quibusdam!
-            </p>
+            <h3>No of classes created so far.</h3>
+            <h1>{classCount}</h1>
           </div>
           <div className="course-col">
             <h3>No of routines created.</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-               Itaque voluptatibus sit quia hic aliquam nam! Doloremque cumque placeat, 
-               repudiandae soluta exercitationem minus libero magnam, aspernatur, 
-               quidem dolor ex aut quibusdam!
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Campus */}
-      <section className="campus">
-        <h1>Our Global Campus</h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-        <div className="row">
-          <div className="campus-col">
-            <img src="./images/london.png" alt="" />
-            <div className="layer">
-              <h3>LONDON</h3>
-            </div>
-          </div>
-          <div className="campus-col">
-            <img src="./images/newyork.png" alt="" />
-            <div className="layer">
-              <h3>NEW YORK</h3>
-            </div>
-          </div>
-          <div className="campus-col">
-            <img src="./images/washington.png" alt="" />
-            <div className="layer">
-              <h3>TBILISI</h3>
-            </div>
+            <h1>1</h1>
           </div>
         </div>
       </section>

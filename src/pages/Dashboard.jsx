@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SideNav from "../components/SideNav";
 
-const Dashboard = () => {
+const Teacher = () => {
   const [teachers, setTeachers] = useState([]);
   const [newTeacherName, setNewTeacherName] = useState("");
   const [newTeacherDep, setNewTeacherDep] = useState("");
+  const [selectedTeacherId, setSelectedTeacherId] = useState(null);
 
   useEffect(() => {
     fetchTeachers();
@@ -60,34 +62,40 @@ const Dashboard = () => {
     }
   };
 
+  const handleUpdateTeacher = async () => {
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_APP_API}/teacher/update-teacher/${selectedTeacherId}`,
+        {
+          name: newTeacherName,
+          dep: newTeacherDep,
+        }
+      );
+
+      console.log("Teacher updated successfully:", response.data);
+
+      // Fetch updated teacher list after updating a teacher
+      fetchTeachers();
+
+      // Clear input fields after successful submission
+      setNewTeacherName("");
+      setNewTeacherDep("");
+      setSelectedTeacherId(null);
+    } catch (error) {
+      console.error("Error updating teacher:", error);
+    }
+  };
+
+  const handleEditTeacher = (teacherId, teacherName, teacherDep) => {
+    setSelectedTeacherId(teacherId);
+    setNewTeacherName(teacherName);
+    setNewTeacherDep(teacherDep);
+  };
+
   return (
     <div>
     <div className="main-container">
-    <div className="navcontainer">
-      <nav className="nav">
-        <div className="nav-upper-options">
-          <div className="nav-option option1">
-            <h3> Dashboard</h3>
-          </div>
-
-          <div className="option2 nav-option">
-            <a href="/teacher"><h3> Teacher</h3></a>
-          </div>
-
-          <div className="nav-option option3">
-            <a href="/class"><h3> Class</h3></a>
-          </div>
-
-          <div className="nav-option option4">
-            <a href="/subjects"><h3> Subject</h3></a>
-          </div>
-
-          <div className="nav-option option5">
-            <a href="/routines"><h3> Routines</h3></a>
-          </div>
-        </div>
-      </nav>
-    </div>
+    <SideNav/>
     <div className="main">
       <div className="searchbar2">
         <input type="text" name="" id="" placeholder="Search" />
@@ -109,6 +117,7 @@ const Dashboard = () => {
           <div className="report-topic-heading">
             <h3 className="t-op">Teacher Name</h3>
             <h3 className="t-op">Department</h3>
+            <h3 className="t-op">Button</h3>
             <h3 className="t-op">Action</h3>
           </div>
           <div className="items">
@@ -122,26 +131,36 @@ const Dashboard = () => {
               >
                 Delete
               </button>
+              <button
+              className="t-op-nextlvl label-tag"
+              onClick={() => handleEditTeacher(teacher._id, teacher.name, teacher.dep)}
+            >
+              Update
+            </button>
               </div>
             ))}
           </div>
         </div>
-        <div>
-          <h3>Add New Teacher:</h3>
-          <input
-            type="text"
-            placeholder="Name"
-            value={newTeacherName}
-            onChange={(e) => setNewTeacherName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Department"
-            value={newTeacherDep}
-            onChange={(e) => setNewTeacherDep(e.target.value)}
-          />
-          <button onClick={handleAddTeacher}>Add Teacher</button>
+          <div className="adding">
+        <h3>{selectedTeacherId ? "Update Teacher:" : "Add New Teacher:"}</h3>
+        <div className="input_data_teacher">
+            <input
+          type="text"
+          placeholder="Name"
+          value={newTeacherName}
+          onChange={(e) => setNewTeacherName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Department"
+          value={newTeacherDep}
+          onChange={(e) => setNewTeacherDep(e.target.value)}
+        />
+        <button onClick={selectedTeacherId ? handleUpdateTeacher : handleAddTeacher}>
+          {selectedTeacherId ? "Update Teacher" : "Add Teacher"}
+        </button>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -149,4 +168,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Teacher;

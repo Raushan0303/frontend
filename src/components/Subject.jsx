@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SideNav from "./SideNav";
 
 const Subject = () => {
   const [subjects, setSubjects] = useState([]);
   const [newSubjectName, setNewSubjectName] = useState("");
+  const [selectedSubjectId, setSelectedSubjectId] = useState(null);
 
   useEffect(() => {
     fetchSubjects();
@@ -56,34 +58,38 @@ const Subject = () => {
     }
   };
 
+   const handleUpdateSubject = async () => {
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_APP_API}/subject/update-subject/${selectedSubjectId}`,
+        {
+          name: newSubjectName,
+        }
+      );
+
+      console.log("Subject updated successfully:", response.data);
+
+      // Fetch updated subject list after updating a subject
+      fetchSubjects();
+
+      // Clear input field after successful submission
+      setNewSubjectName("");
+      setSelectedSubjectId(null);
+    } catch (error) {
+      console.error("Error updating subject:", error);
+    }
+  };
+
+  const handleEditSubject = (subjectId, subjectName) => {
+    setSelectedSubjectId(subjectId);
+    setNewSubjectName(subjectName);
+  };
+
+
   return (
     <div>
       <div className="main-container">
-      <div className="navcontainer">
-      <nav className="nav">
-        <div className="nav-upper-options">
-          <div className="nav-option option1">
-            <h3> Dashboard</h3>
-          </div>
-
-          <div className="option2 nav-option">
-            <a href="/teacher"><h3> Teacher</h3></a>
-          </div>
-
-          <div className="nav-option option3">
-            <a href="/class"><h3> Class</h3></a>
-          </div>
-
-          <div className="nav-option option4">
-            <a href="/subjects"><h3> Subject</h3></a>
-          </div>
-
-          <div className="nav-option option5">
-            <a href="/routines"><h3> Routines</h3></a>
-          </div>
-        </div>
-      </nav>
-    </div>
+      <SideNav/>
     <div className="main">
       <div className="searchbar2">
         <input type="text" name="" id="" placeholder="Search" />
@@ -104,8 +110,8 @@ const Subject = () => {
         <div className="report-body">
           <div className="report-topic-heading">
             <h3 className="t-op">semester</h3>
-            <h3 className="t-op">year</h3>
-            <h3 className="t-op">Action</h3>
+            <h3 className="t-op">Delete</h3>
+            <h3 className="t-op">Update</h3>
           </div>
         <div className="items">
           {subjects.map((subject) => (
@@ -117,20 +123,30 @@ const Subject = () => {
               >
                 Delete
               </button>
+              <button
+              className="t-op-nextlvl label-tag"
+              onClick={() => handleEditSubject(subject._id, subject.name)}
+            >
+              Update
+            </button>
             </div>
           ))}
         </div>
         </div>
-        <div className="adding">
-          <h3>Add New Subject:</h3>
-          <input
-            type="text"
-            placeholder="Name"
-            value={newSubjectName}
-            onChange={(e) => setNewSubjectName(e.target.value)}
-          />
-          <button onClick={handleAddSubject}>Add Subject</button>
+         <div className="adding">
+        <h3>{selectedSubjectId ? "Update Subject:" : "Add New Subject:"}</h3>
+        <div className="input_data_teacher">
+            <input
+          type="text"
+          placeholder="Name"
+          value={newSubjectName}
+          onChange={(e) => setNewSubjectName(e.target.value)}
+        />
+        <button onClick={selectedSubjectId ? handleUpdateSubject : handleAddSubject}>
+          {selectedSubjectId ? "Update Subject" : "Add Subject"}
+        </button>
         </div>
+      </div>
       </div>
     </div>
     </div>
